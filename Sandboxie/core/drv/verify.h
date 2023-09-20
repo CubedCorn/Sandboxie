@@ -84,7 +84,7 @@ enum ECertLevel {
 };
 
 #define CERT_IS_TYPE(cert,t)        ((cert.type & 0b11100) == (unsigned long)(t))
-#define CERT_IS_SUBSCRIPTION(cert)  (true) //(CERT_IS_TYPE(cert, eCertBusiness) || CERT_IS_TYPE(cert, eCertSubscription) || cert.type == eCertEntryPatreon || CERT_IS_TYPE(cert, eCertEvaluation))
+#define CERT_IS_SUBSCRIPTION(cert)  (CERT_IS_TYPE(cert, eCertBusiness) || CERT_IS_TYPE(cert, eCertSubscription) || cert.type == eCertEntryPatreon || CERT_IS_TYPE(cert, eCertEvaluation))
 #define CERT_IS_INSIDER(cert)		(true)
 #define CERT_IS_LEVEL(cert,l)       (cert.active && cert.level >= (unsigned long)(l))
 
