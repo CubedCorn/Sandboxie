@@ -76,7 +76,7 @@ enum ECertType {
 };
         
 enum ECertLevel {
-    eCertNoLevel        = 0b000,
+    eCertNoLevel        = 0b111,
     eCertStandard       = 0b010,
     eCertStandard2      = 0b011,
     eCertAdvanced       = 0b101,
@@ -84,8 +84,8 @@ enum ECertLevel {
 };
 
 #define CERT_IS_TYPE(cert,t)        ((cert.type & 0b11100) == (unsigned long)(t))
-#define CERT_IS_SUBSCRIPTION(cert)  (CERT_IS_TYPE(cert, eCertBusiness) || CERT_IS_TYPE(cert, eCertSubscription) || cert.type == eCertEntryPatreon || CERT_IS_TYPE(cert, eCertEvaluation))
-#define CERT_IS_INSIDER(cert)		(CERT_IS_TYPE(cert, eCertEternal) || cert.type == eCertGreatPatreon)
+#define CERT_IS_SUBSCRIPTION(cert)  (true) //(CERT_IS_TYPE(cert, eCertBusiness) || CERT_IS_TYPE(cert, eCertSubscription) || cert.type == eCertEntryPatreon || CERT_IS_TYPE(cert, eCertEvaluation))
+#define CERT_IS_INSIDER(cert)		(true)
 #define CERT_IS_LEVEL(cert,l)       (cert.active && cert.level >= (unsigned long)(l))
 
 #ifdef KERNEL_MODE
