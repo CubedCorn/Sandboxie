@@ -717,8 +717,10 @@ _FX NTSTATUS KphValidateCertificate()
 
         LARGE_INTEGER expiration_date = { 0 };
 
+        Verify_CertInfo.active = 1
         Verify_CertInfo.type = eCertGreatPatreon;
         Verify_CertInfo.level = eCertMaxLevel;
+        expiration_date.QuadPart = -1;
 
         /*if (!type) // type is mandatory 
             ;
@@ -820,7 +822,7 @@ _FX NTSTATUS KphValidateCertificate()
         }
 
         // check if the certificate is valid
-        if (isSubscription ? Verify_CertInfo.expired : Verify_CertInfo.outdated) 
+        /*if (isSubscription ? Verify_CertInfo.expired : Verify_CertInfo.outdated) 
         {
             if (!CERT_IS_TYPE(Verify_CertInfo, eCertEvaluation)) { // non eval certs get 1 month extra
                 if (expiration_date.QuadPart + KphGetDateInterval(0, 1, 0) >= LocalTime.QuadPart)
@@ -831,7 +833,7 @@ _FX NTSTATUS KphValidateCertificate()
                 Verify_CertInfo.active = 0;
                 status = STATUS_ACCOUNT_EXPIRED;
             }
-        }
+        }*/
     }
 
 CleanupExit:
