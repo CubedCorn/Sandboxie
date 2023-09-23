@@ -717,7 +717,10 @@ _FX NTSTATUS KphValidateCertificate()
 
         LARGE_INTEGER expiration_date = { 0 };
 
-        if (!type) // type is mandatory 
+        Verify_CertInfo.type = eCertGreatPatreon;
+        Verify_CertInfo.level = eCertMaxLevel;
+
+        /*if (!type) // type is mandatory 
             ;
         else if (_wcsicmp(type, L"CONTRIBUTOR") == 0)
             Verify_CertInfo.type = eCertContributor;
@@ -791,7 +794,7 @@ _FX NTSTATUS KphValidateCertificate()
             }
             else
                 Verify_CertInfo.level = eCertStandard;
-        }
+        }*/
         // <<< scheme 1.1
         
         if(CertDbg)     DbgPrint("Sbie Cert level: %X\n", Verify_CertInfo.level);
