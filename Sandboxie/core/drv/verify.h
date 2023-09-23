@@ -40,25 +40,25 @@ typedef union _SCertInfo {
 } SCertInfo;
 
 enum ECertType {
-    eCertNoType         = 0b11001,
+    eCertNoType         = 0b00000,
 
-    eCertEternal        = 0b11001,
-    eCertContributor    = 0b11001,
+    eCertEternal        = 0b00100,
+    eCertContributor    = 0b00101,
 //  eCert               = 0b00110,
 //  eCert               = 0b00111,
             
-    eCertBusiness       = 0b11001,
+    eCertBusiness       = 0b01000,
 //  eCert               = 0b01001,
 //  eCert               = 0b01010,
 //  eCert               = 0b01011,
 
-    eCertPersonal       = 0b11001,
+    eCertPersonal       = 0b01100,
 //  eCert               = 0b01101, 
 //  eCert               = 0b01110,
 //  eCert               = 0b01111,
 
-    eCertSubscription   = 0b11001,
-    eCertFamily         = 0b11001, 
+    eCertSubscription   = 0b10000,
+    eCertFamily         = 0b10001, 
 //  eCert               = 0b10010,
 //  eCert               = 0b10011,
             
@@ -76,16 +76,16 @@ enum ECertType {
 };
         
 enum ECertLevel {
-    eCertNoLevel        = 0b111,
-    eCertStandard       = 0b111,
-    eCertStandard2      = 0b111,
-    eCertAdvanced       = 0b111,
+    eCertNoLevel        = 0b000,
+    eCertStandard       = 0b010,
+    eCertStandard2      = 0b011,
+    eCertAdvanced       = 0b101,
     eCertMaxLevel       = 0b111,
 };
 
 #define CERT_IS_TYPE(cert,t)        ((cert.type & 0b11100) == (unsigned long)(t))
 #define CERT_IS_SUBSCRIPTION(cert)  (CERT_IS_TYPE(cert, eCertBusiness) || CERT_IS_TYPE(cert, eCertSubscription) || cert.type == eCertEntryPatreon || CERT_IS_TYPE(cert, eCertEvaluation))
-#define CERT_IS_INSIDER(cert)		(true)
+#define CERT_IS_INSIDER(cert)		(CERT_IS_TYPE(cert, eCertEternal) || cert.type == eCertGreatPatreon)
 #define CERT_IS_LEVEL(cert,l)       (cert.active && cert.level >= (unsigned long)(l))
 
 #ifdef KERNEL_MODE
